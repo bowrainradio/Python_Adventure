@@ -67,9 +67,8 @@ class messengerBot():
         location = input("What for today?: ")
         name = input("Who we're targeting today?: ")
         hours = float(input("How many hours apart?: "))
-        # seconds in one hour
         seconds = 3600
-        total_time = round(int(hours * seconds))
+        totalTime = round(int(hours * seconds))
         self.driver.get('https://www.messenger.com')
         sleep(2)
         self.driver.find_element_by_xpath('//*[@class="_9o-r"]//button[2]').click()
@@ -82,6 +81,7 @@ class messengerBot():
         self.driver.find_element_by_xpath(f'//*[@class="aahdfvyu"]//*[@class="l9j0dhe7"]//span[contains(text(), "{name}")]//..//..//../../../../../../../../../a').click()
         sleep(2)
         for memesIndex in range(1,11):
+            totalTimeInMinutes = round(totalTime / 60)
             if location == "gifs":
                 image_path = f"/Users/rainbow/Desktop/RainbowCode/Python/Selenium/imgs/gifs/meme{memesIndex}.gif"
             elif location == "memes":
@@ -90,12 +90,16 @@ class messengerBot():
             image_input.send_keys(image_path)
             sleep(1)
             self.driver.find_element_by_xpath('//*[@class="oajrlxb2 gs1a9yip g5ia77u1 mtkw9kbi tlpljxtp qensuy8j ppp5ayq2 goun2846 ccm00jje s44p3ltw mk2mc5f4 rt8b4zig n8ej3o3l agehan2d sk4xxmp2 rq0escxv nhd2j8a9 pq6dq46d mg4g778l btwxx1t3 pfnyh3mw p7hjln8o knvmm38d cgat1ltu bi6gxh9e kkf49tns tgvbjcpo hpfvmrgz cxgpxx05 dflh9lhu sj5x9vvc scb9dxdr l9j0dhe7 i1ao9s8h esuyzwwr f1sip0of du4w35lb lzcic4wl abiwlrkh p8dawk7l"]').click()
-            sleep(total_time)
 
+            print(totalTime)
+            #Time countdown(simple to improve)
+            while totalTimeInMinutes > 0:
+                print(f"Minutes left: {totalTimeInMinutes}")
+                totalTimeInMinutes -= 1
+                sleep(60)
+            print(f"Sending another meme!")
         self.driver.close()
         self.driver.quit()
 
-# bot = messengerBot()
-# bot.googleSearch()
-
-
+bot = messengerBot()
+bot.googleSearch()

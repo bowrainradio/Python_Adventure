@@ -64,6 +64,8 @@ class messengerBot():
             x += 1
 
     def sendGifs(self):
+        login = ""
+        password = ""
         location = input("What for today?: ")
         name = input("Who we're targeting today?: ")
         hours = float(input("How many hours apart?: "))
@@ -74,8 +76,8 @@ class messengerBot():
         self.driver.find_element_by_xpath('//*[@class="_9o-r"]//button[2]').click()
         sleep(1)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        self.driver.find_element_by_xpath('//*[@id="email"]').send_keys("666096756")
-        self.driver.find_element_by_xpath('//*[@id="pass"]').send_keys("Imyamvymfgmsa1920")
+        self.driver.find_element_by_xpath('//*[@id="email"]').send_keys(login)
+        self.driver.find_element_by_xpath('//*[@id="pass"]').send_keys(password)
         self.driver.find_element_by_xpath('//*[@id="loginbutton"]').click()
         sleep(10)
         self.driver.find_element_by_xpath(f'//*[@class="aahdfvyu"]//*[@class="l9j0dhe7"]//span[contains(text(), "{name}")]//..//..//../../../../../../../../../a').click()
